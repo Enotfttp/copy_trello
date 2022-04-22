@@ -54,6 +54,7 @@
    	padding: 3px 5px;
    	border-radius: 5px;
    	margin-right: 15px;
+		transition: all .2s;
 	}
 	&-close{
 		cursor: pointer;
@@ -62,6 +63,7 @@
 		border-radius: 10px;
 		background-color: rgba(28,28,28,0);
 		border: none;
+		transition: all .2s;
 		&:hover{
 			background-color: #2b3b83;
 		}

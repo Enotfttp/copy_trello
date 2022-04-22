@@ -8,7 +8,8 @@ export const reducerConstats = {
 	CHANGE_NAME_COLUMN: "CHANGE_NAME_COLUMN",
 	SET_NEW_USER: 'SET_NEW_USER',
 	ENTER_USER: 'ENTER_USER',
-	DELETE_CARD: 'DELETE_CARD'
+	DELETE_CARD: 'DELETE_CARD',
+	EDIT_CARD: 'EDIT_CARD'
 }
 export const addStore = {
 	id: '',

@@ -8,8 +8,47 @@
 	margin-bottom: 15px;
 	justify-content: space-between;
 	align-items: center;
+	transition: all .2s;
+	min-height: 20px;
+	color:#000;
+	.active{
+		width: 90%;
+		background-color: #fff;
+		padding: 5px;
+		border-radius: 5px;
+		overflow: hidden;
+		font-size: 16px;
+		font-weight: 600;
+ 		cursor: pointer;
+	}
+	.save-edit{
+		cursor: pointer;
+		background-color: #2b3b83;
+   	color: #fff;
+   	font-size: 12px;
+   	padding: 3px 5px;
+   	border-radius: 5px;
+   	margin-right: 15px;
+		transition: all .2s;
+	}
+	textarea{
+		margin-top: 19px;
+	}
+	&-name{
+		width: 90%;
+		resize:none;
+		background-color: rgba(28,28,28,0);
+		border: none;
+		overflow: hidden;
+		font-size: 16px;
+		font-weight: 600;
+ 		cursor: pointer;
+	}
 	&:hover{
 	background: #9f9f9f;
+	}
+	.block-img{
+		display: flex;
 	}
 	img{
 		width: 15px;
@@ -18,6 +57,7 @@
 		border-radius: 10px;
 		background-color: rgba(28,28,28,0);
 		border: none;
+		transition: all .2s;
 		&:nth-child(1){
 			padding: 2px;
 			width: 20px;
@@ -25,7 +65,6 @@
 		}
 		&:hover{
 			background-color: #2b3b83;
-
 		}
 	}
 }

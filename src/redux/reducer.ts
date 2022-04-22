@@ -77,6 +77,19 @@ export const mainReducer = (state = defaultStore, action:any) => {
 					mainStore: mainStore,
 				}
 			})]
+		case reducerConstats.EDIT_CARD:
+			return [...state.map((el: IStore) => { 
+				 el.mainStore.map((item: IItesmsStore) => {
+					item.card.map((elem: ICardItems) => {
+						if (elem.id === action.payload.id) {
+							elem.title = action.payload.title
+						} 
+						return el
+					})
+				return el
+			})
+			return el
+			})]
 		default:
 			return state
 	}
@@ -86,6 +99,8 @@ export const changeTitleCard = (payload: { id: number, card: {id: string,	title:
 export const changeName = (payload: { id: number, title: string, name:string}) => ({ type: reducerConstats.CHANGE_NAME_COLUMN, payload })
 export const setNameUser = (payload: string) => ({ type: reducerConstats.SET_NEW_USER, payload })
 export const deleteCard = (payload: string) => ({ type: reducerConstats.DELETE_CARD, payload })
+export const editCard = (payload: {id:string, title:string}) => ({ type: reducerConstats.EDIT_CARD, payload })
+
 
 
 

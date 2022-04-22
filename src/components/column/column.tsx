@@ -43,6 +43,8 @@ const Column: FC<IColumn> = (props:IColumn) => {
 						  <Card
 							  title={el.title}
 							  key={el.id}
+							  name={props.name}
+							  idCard={ el.id}
 						  />
 					  )
 			  }) }

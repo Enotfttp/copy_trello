@@ -12,6 +12,8 @@ const state = useSelector((store: IStore[]) => store)
 	useEffect(() => { 
 		localStorage.setItem('allArray', JSON.stringify(state))
 	}, [state])	
+	console.log('state = ',state);
+	
 	
   return (
 	  <>

@@ -1,29 +1,10 @@
-import { reducerConstats } from "../constants/constants"
-import IStore, { IItesmsStore } from "../interfaces/reduxInterface"
+import { addStore, reducerConstats } from "../constants/constants"
+import IStore, { IItesmsStore, ICardItems } from "../interfaces/reduxInterface"
 import nextId from "react-id-generator";
 
 
 
 const defaultStore: IStore[] = JSON.parse(String(localStorage.getItem('allArray'))) ? JSON.parse(String(localStorage.getItem('allArray'))) : [] ;
-const addStore: IStore = {
-	id: '',
-	userName: '',
-	mainStore: [
-		{
-			id: 1, title: "TODO", addCard: true, card: []
-		},
-		{
-			id: 2, title: "In Progress", addCard: true, card: []
-		},
-		{
-			id: 3, title: "Testing", addCard: true, card: []
-		},
-		{
-			id: 4, title: "Done", addCard: true, card: []
-		}
-	],
-}
-
 
 export const mainReducer = (state = defaultStore, action:any) => { 
 	switch (action.type) {
@@ -69,10 +50,33 @@ export const mainReducer = (state = defaultStore, action:any) => {
 		case reducerConstats.SET_NEW_USER:
 			state = [...state, { ...addStore, id: nextId(), userName: action.payload }]	
 			const used:any =  {};
-			const filtered = state.filter((obj:IStore) =>{
-				 return obj.userName in used ? 0:(used[obj.userName]=1);
+			const newArray = state.filter((item:IStore) =>{
+				 return item.userName in used ? 0:(used[item.userName]=1);
 			});
-			return filtered
+			return newArray
+		case reducerConstats.DELETE_CARD:
+			return [...state.map((el: IStore) => {
+			const mainStore = el.mainStore.map((item: IItesmsStore) => {
+						const nextItem = item.card.filter((elem: ICardItems) => {
+							if (elem.id !== action.payload) {
+								return true
+							} else {
+								return false
+							}
+						})
+					return {
+						card:nextItem,
+						id: item.id,
+						title: item.title,
+						addCard: item.addCard
+					}
+				})
+				return {
+					id: el.id,
+					userName: el.userName,
+					mainStore: mainStore,
+				}
+			})]
 		default:
 			return state
 	}
@@ -81,6 +85,7 @@ export const addCard = (payload: { id: number, addCard: boolean }) => ({ type: r
 export const changeTitleCard = (payload: { id: number, card: {id: string,	title: string	}, name:string}) => ({ type: reducerConstats.CHANGE_TITLE_CARD, payload })
 export const changeName = (payload: { id: number, title: string, name:string}) => ({ type: reducerConstats.CHANGE_NAME_COLUMN, payload })
 export const setNameUser = (payload: string) => ({ type: reducerConstats.SET_NEW_USER, payload })
+export const deleteCard = (payload: string) => ({ type: reducerConstats.DELETE_CARD, payload })
 
 
 

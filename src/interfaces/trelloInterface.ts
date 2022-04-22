@@ -11,5 +11,7 @@ export interface IColumn {
 	name:string
 }
 export interface ICard { 
-	title:string
+	title: string,
+	name: string,
+	idCard:string
 }

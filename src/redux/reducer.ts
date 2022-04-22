@@ -6,7 +6,6 @@ import { v4 as uuid } from 'uuid';
 
 
 const defaultStore: IStore = JSON.parse(String(localStorage.getItem('allArray'))) ? JSON.parse(String(localStorage.getItem('allArray'))) : addStore ;
-//const defaultStore:IStore = {}
 export const mainReducer = (state = defaultStore, action:any) => { 
 	switch (action.type) {
 		case reducerConstats.SET_NEW_USER:

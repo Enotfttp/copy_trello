@@ -7,14 +7,13 @@ import { IColumn } from '../../interfaces/trelloInterface';
 import { mainConstats } from '../../constants/constants';
 import  { ICardItems } from '../../interfaces/reduxInterface';
 import cross from '../../assets/cross.svg'
-import nextId from "react-id-generator";
+import { v4 as uuid } from 'uuid';
 
 const Column: FC<IColumn> = (props:IColumn) => {
 	const dispatch = useDispatch();
-	const htmlId = nextId();
 	const [title, setTitle] = useState('');
 	
-	const changeNameColumn = (event: ChangeEvent<HTMLTextAreaElement>, type: boolean) => { 		
+	const changeNameColumn = (event: ChangeEvent<HTMLTextAreaElement>, type: boolean) => { 
 		if (props.id === Number(event.target.id)) {
 			event.target.style.height = "auto"
 			let scHeight = event.target.scrollHeight;
@@ -23,14 +22,14 @@ const Column: FC<IColumn> = (props:IColumn) => {
 		if (type) {
 			setTitle(event.target.value)
 		} else { 
-			dispatch(changeName({id:props.id,title:event.target.value, name: props.name}))
+			dispatch(changeName({id:props.id,title:event.target.value}))
 		}
 	}
 
 	const setTitleCard = (idCard: number) => { 
 		dispatch(addCard({ id: idCard, addCard: true })) 
 		if (title.trim() !== '') {
-			dispatch(changeTitleCard({id: props.id, card: {	id: htmlId,	title:title }, name: props.name}	))
+			dispatch(changeTitleCard({id: props.id, card: {	id: uuid(),	title:title }}	))
 		}
 	}
 	
@@ -43,8 +42,9 @@ const Column: FC<IColumn> = (props:IColumn) => {
 						  <Card
 							  title={el.title}
 							  key={el.id}
+							  idCard={el.id}
+							  idColumn={props.id}
 							  name={props.name}
-							  idCard={ el.id}
 						  />
 					  )
 			  }) }

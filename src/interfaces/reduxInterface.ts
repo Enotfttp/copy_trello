@@ -1,6 +1,5 @@
 export default interface IStore {
-	id:string,
-	userName: string,
+	user:IUser[],
 	mainStore: IItesmsStore[],
 }
 export interface IItesmsStore { 
@@ -12,4 +11,13 @@ export interface IItesmsStore {
 export interface ICardItems { 
 	id: string,
 	title: string,
+}
+export interface IUser { 
+	id: string, 
+	name: string, 
+	idCard:ICardUser[]
+}
+export interface ICardUser { 
+	idColumn: number,
+	idCard:string
 }

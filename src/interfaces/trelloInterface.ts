@@ -12,6 +12,7 @@ export interface IColumn {
 }
 export interface ICard { 
 	title: string,
-	name: string,
-	idCard:string
+	idCard: string,
+	name:string,
+	idColumn:number
 }

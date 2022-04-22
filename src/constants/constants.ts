@@ -12,8 +12,7 @@ export const reducerConstats = {
 	EDIT_CARD: 'EDIT_CARD'
 }
 export const addStore = {
-	id: '',
-	userName: '',
+	user: [] ,
 	mainStore: [
 		{
 			id: 1, title: "TODO", addCard: true, card: []

@@ -2,12 +2,13 @@ import { addStore, reducerConstats } from "../constants/constants"
 import IStore, { IItesmsStore, ICardItems, IUser, ICardUser } from "../interfaces/reduxInterface"
 import { v4 as uuid } from 'uuid';
 
+const defaultStore: IStore = JSON.parse(String(localStorage.getItem('allArray'))) ? JSON.parse(String(localStorage.getItem('allArray'))) : addStore;
 
 
 
-const defaultStore: IStore = JSON.parse(String(localStorage.getItem('allArray'))) ? JSON.parse(String(localStorage.getItem('allArray'))) : addStore ;
 export const mainReducer = (state = defaultStore, action:any) => { 
 	switch (action.type) {
+		//FIX 1
 		case reducerConstats.SET_NEW_USER:
 			const currentState = {
 				...state.mainStore.map((el: IItesmsStore) => {
@@ -17,7 +18,7 @@ export const mainReducer = (state = defaultStore, action:any) => {
 					id: uuid(),
 					name: action.payload,
 					idCard: []
-				})
+				 }),
 			}
 			const used: any = {};
 			const newArray = currentState.user.filter((item: IUser) => {

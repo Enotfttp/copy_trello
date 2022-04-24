@@ -27,4 +27,5 @@ export const addStore = {
 			id: 4, title: "Done", addCard: true, card: []
 		}
 	],
+	messageStore: []
 }

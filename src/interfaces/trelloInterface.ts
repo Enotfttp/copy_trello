@@ -16,3 +16,6 @@ export interface ICard {
 	name:string,
 	idColumn:number
 }
+export interface IDescriptionWindow { 
+	closeWindow:()=>void
+}

@@ -6,11 +6,13 @@ import pencil from '../../assets/pencil.svg'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCard, editCard } from '../../redux/reducer';
 import IStore, { ICardUser, IUser } from '../../interfaces/reduxInterface';
+import DescriptionWindow from '../descriptionWindow/descriptionWindow';
 
 
 const Card: FC<ICard> = (props: ICard) => {
 	const [edit, setEdit] = useState(false)
 	const [cardValue, setCardValue] = useState('');
+	const [descriptionWindow, setDescriptionWindow] = useState(false)
 	const dispatch = useDispatch();
 	const state = useSelector((store:IStore)=>store)
 
@@ -41,10 +43,18 @@ const Card: FC<ICard> = (props: ICard) => {
 		setEdit(false)
 		dispatch(editCard({id:id, title: cardValue}))
 	}
+	const openWindow = () => {
+		setDescriptionWindow(true)
+		console.log('dev123', descriptionWindow);
+	}
+	const closeWindow = () => { 
+		setDescriptionWindow(false)
+		console.log('dev', descriptionWindow);
+	}
 
 	return (
 		<>
-			<div className='card' key={props.idCard}>
+			<div className='card' key={props.idCard} onClick={openWindow}>
 				<div className='block-textarea'>
 					{state.user.map((el: IUser) => { 
 						return(el.idCard.map((item: ICardUser) => { 
@@ -74,9 +84,9 @@ const Card: FC<ICard> = (props: ICard) => {
 							}
 						})
 						)
-				}) }
-				
+				})}
 			</div>
+			{descriptionWindow ? <DescriptionWindow closeWindow={closeWindow} /> : null}
 	  </>
   );
 }

@@ -35,7 +35,7 @@ const Column: FC<IColumn> = (props:IColumn) => {
 	
   return (
 	  <>
-		  <div className='column'>
+		  <div className='column' id={String(props.id)}>
 			  <textarea suppressContentEditableWarning={true} id={String(props.id)} contentEditable className='column-name' onChange={(event: ChangeEvent<HTMLTextAreaElement>) => { changeNameColumn(event, false) }} defaultValue={props.title}></textarea>
 			  {props.card.map((el: ICardItems) => { 
 					  return (

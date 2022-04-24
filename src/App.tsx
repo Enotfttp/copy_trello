@@ -8,12 +8,12 @@ import { useEffect } from 'react';
 
 function App() {
 
-const state = useSelector((store: IStore) => store)
-	useEffect(() => { 
+	const state = useSelector((store: IStore) => store)
+	useEffect(() => {
 		localStorage.setItem('allArray', JSON.stringify(state))
-	}, [state])	
-	
-  return (
+	}, [state])
+
+	return (
 	  <>
 		  <div className='app'>
 			  <StartPopup />

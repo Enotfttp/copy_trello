@@ -43,19 +43,19 @@ const Card: FC<ICard> = (props: ICard) => {
 		setEdit(false)
 		dispatch(editCard({id:id, title: cardValue}))
 	}
-	const openWindow = () => {
-		setDescriptionWindow(true)
-		console.log('dev123', descriptionWindow);
+	const openWindow = (event: any) => {
+		if ((event.target.tagName !== 'BUTTON' && (event.target.tagName === 'TEXTAREA' && !edit)) || event.target.tagName === 'SPAN') { 
+			setDescriptionWindow(true)
+		}
 	}
 	const closeWindow = () => { 
 		setDescriptionWindow(false)
-		console.log('dev', descriptionWindow);
 	}
 
 	return (
 		<>
-			<div className='card' key={props.idCard} onClick={openWindow}>
-				<div className='block-textarea'>
+			<div className='card' key={props.idCard} >
+				<div className='block-textarea' onClick={(event:any)=>openWindow(event)}>
 					{state.user.map((el: IUser) => { 
 						return(el.idCard.map((item: ICardUser) => { 
 							if (item.idColumn === props.idColumn && item.idCard === props.idCard ) {
@@ -86,7 +86,7 @@ const Card: FC<ICard> = (props: ICard) => {
 						)
 				})}
 			</div>
-			{descriptionWindow ? <DescriptionWindow closeWindow={closeWindow} /> : null}
+			{descriptionWindow ? <DescriptionWindow closeWindow={closeWindow} name={props.name} idColumn={props.idColumn} idCard={props.idCard} title={props.title} /> : null}
 	  </>
   );
 }

@@ -17,5 +17,9 @@ export interface ICard {
 	idColumn:number
 }
 export interface IDescriptionWindow { 
-	closeWindow:()=>void
+	closeWindow: () => void,
+	name: string,
+	idColumn: number,
+	idCard: string,
+	title:string
 }

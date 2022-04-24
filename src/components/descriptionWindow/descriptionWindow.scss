@@ -38,17 +38,20 @@
 	}
 	span{
 		display: block;
-		text-align: center;
+		text-align: left;
+		padding-right: 20px;
 		font-size: 20px;
 		font-weight: 600;
 		color:#000;
+		word-break:break-all ;
 	}
 }
 .block-description{
 	margin-top: 20px;
 	textarea{
+		background: #fff;
 		width: 95%;
-		min-height: 15px;
+		min-height: 45px;
 		resize:none;
 		border: none;
 		border-radius: 5px;
